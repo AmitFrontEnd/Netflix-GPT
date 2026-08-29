@@ -1,7 +1,15 @@
 import React, { useRef, useState } from "react";
 import { formValidation } from "../utils/validation";
-
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
+  const dispatch = useDispatch();
   const [isSignIn, setIsSignIn] = useState(true);
   const email = useRef(null);
   const password = useRef(null);
@@ -9,12 +17,64 @@ const Login = () => {
   const [error, setError] = useState(null);
 
   const handleSubmit = () => {
-    const validate = formValidation(
+    const errorMessage = formValidation(
       email.current.value,
       password.current.value,
       !isSignIn ? name.current.value : null,
     );
-    setError(validate);
+    setError(errorMessage);
+    if (errorMessage) return;
+    if (!isSignIn) {
+      //Sign Up
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+          })
+            .then(() => {
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayName }));
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+          if (error.message.includes("auth/email-already-in-use")) {
+            setError("Email is already registered please sign in...");
+            name.current.value = "";
+            email.current.value = "";
+            password.current.value = "";
+          } else {
+            setError("Some error occured");
+          }
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          console.log(error.message);
+          if (error.message.includes("auth/invalid-credential")) {
+            setError("Email or password is invalid");
+          } else {
+            setError("Some error occ");
+          }
+        });
+    }
   };
   return (
     <div>
