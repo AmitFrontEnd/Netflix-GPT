@@ -25,6 +25,6 @@ const appRoutes = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <Provider store={appStore}>
-    <RouterProvider router={appRoutes}></RouterProvider>,
+    <RouterProvider router={appRoutes}></RouterProvider>
   </Provider>,
 );

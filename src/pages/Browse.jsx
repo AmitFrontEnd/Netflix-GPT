@@ -1,9 +1,13 @@
-import React from 'react'
+import MainContainer from "../components/MainContainer";
+import RecommendSection from "../components/RecommendSection";
 
 const Browse = () => {
   return (
-    <div>Browse</div>
-  )
-}
+    <>
+      <MainContainer />
+      <RecommendSection />
+    </>
+  );
+};
 
-export default Browse
+export default Browse;
