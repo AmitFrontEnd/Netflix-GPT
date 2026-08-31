@@ -9,25 +9,26 @@ const VideoPlayer = ({ movieId }) => {
   if (!trailerMovie) return null;
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden">
-      <iframe
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
+      <div
         className="
           absolute
           top-1/2 left-1/2
-          w-full h-full
+          w-[177.78vh] h-[56.25vw]
+          min-w-full min-h-full
           -translate-x-1/2 -translate-y-1/2
-          scale-[1.8] md:scale-[1.35]
-          pointer-events-none
-        "
-        src={`https://www.youtube.com/embed/${trailerMovie.key}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&loop=1&playlist=${trailerMovie.key}`}
-        title="Movie trailer"
-        allow="autoplay; encrypted-media"
-        referrerPolicy="strict-origin-when-cross-origin"
-      />
+          scale-[1.4]"
+      >
+        <iframe
+          className="w-full h-full pointer-events-none"
+          src={`https://www.youtube-nocookie.com/embed/${trailerMovie.key}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&fs=0&loop=1&playlist=${trailerMovie.key}&playsinline=1`}
+          title="trailer"
+          allow="autoplay; encrypted-media"
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+      </div>
 
-      <div className="absolute inset-0 bg-black/50"></div>
-
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent"></div>
+      <div className="absolute bg-black opacity-50 inset-0 z-10" />
     </div>
   );
 };
