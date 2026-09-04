@@ -1,4 +1,10 @@
+import { useSelector } from "react-redux";
+import { lang } from "../utils/languages";
+
 const VideoInfo = ({ title, overview }) => {
+   const preferedLang = useSelector(
+      (store) => store.userConfig.preferedLanguage,
+    );
   return (
     <div
       className="
@@ -53,7 +59,7 @@ const VideoInfo = ({ title, overview }) => {
             transition
           "
         >
-          ▶ Play
+          ▶ {lang[preferedLang].playButton}
         </button>
 
         <button
@@ -69,7 +75,7 @@ const VideoInfo = ({ title, overview }) => {
             transition
           "
         >
-          ⓘ More Info
+          ⓘ {lang[preferedLang].moreInfo}
         </button>
       </div>
     </div>

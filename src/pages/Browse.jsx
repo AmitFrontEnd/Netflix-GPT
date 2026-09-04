@@ -1,12 +1,17 @@
+import { useSelector } from "react-redux";
 import MainContainer from "../components/MainContainer";
 import RecommendSection from "../components/RecommendSection";
+import GPTSearchPage from "../components/GPTSearchPage";
 
 const Browse = () => {
-  return (
+  const isSearch = useSelector((state) => state.gpt.isSearch);
+  return !isSearch ? (
     <>
       <MainContainer />
       <RecommendSection />
     </>
+  ) : (
+    <GPTSearchPage />
   );
 };
 
