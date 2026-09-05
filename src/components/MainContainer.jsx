@@ -2,8 +2,7 @@ import VideoPlayer from "./VideoPlayer";
 import { useSelector } from "react-redux";
 import VideoInfo from "./VideoInfo";
 const MainContainer = () => {
-
-  const movies = useSelector((state) => state.movies.nowPlayingMovies);
+  const movies = useSelector((store) => store.movies.nowPlayingMovies);
 
   if (!movies?.length) return null;
 

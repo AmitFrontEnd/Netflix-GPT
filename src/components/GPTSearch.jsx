@@ -7,11 +7,12 @@ import { useSelector } from "react-redux";
 const GPTSearch = () => {
   const searchGptMovies = useGptSearchMovies();
   const isFecthingGPTResult = useSelector(
-    (state) => state.userConfig.isFecthingGPTResult,
+    (store) => store.userConfig.isFecthingGPTResult,
   );
   const inputRef = useRef(null);
 
   const handleSearch = async () => {
+    if (!inputRef.current.value.trim()) return;
     searchGptMovies(inputRef?.current.value);
   };
 

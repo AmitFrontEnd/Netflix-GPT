@@ -8,7 +8,7 @@ export const useGetMoviesResults = () => {
   const dispatch = useDispatch();
   const gptFinalMoviesResult = useSelector(store => store.userConfig.finalMoviesArray)
   const gptMoviesTitles = useSelector(
-    (state) => state.userConfig.gptMoviesTitles,
+    (store) => store.userConfig.gptMoviesTitles,
   );
   const gptMoviesArrays = gptMoviesTitles ? gptMoviesTitles.split(",") : [];
   useEffect(() => {

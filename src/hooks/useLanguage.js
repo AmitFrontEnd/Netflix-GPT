@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 export const useLanguage = () => {
   const preferedLanguage = useSelector(
-    (state) => state.userConfig.preferedLanguage,
+    (store) => store.userConfig.preferedLanguage,
   );
   return preferedLanguage
 }

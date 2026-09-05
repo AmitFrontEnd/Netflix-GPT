@@ -1,26 +1,18 @@
-import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
-import { useTopRatedMovies } from "../hooks/useTopRatedMovies";
-import { usePopularMovies } from "../hooks/usePopularMovies";
-import { lang } from "../utils/languages";
+import useMovieListDetails from "../hooks/useMovieListDetails";
 
 const RecommendSection = () => {
-  const preferedLang = useSelector(
-    (store) => store.userConfig.preferedLanguage,
-  );
-  const nowPlayingMovies = useSelector(
-    (state) => state.movies.nowPlayingMovies,
-  );
-  const popularMovies = useSelector((state) => state.movies.popularMovies);
-  const topRatedMovies = useSelector((state) => state.movies.topRatedMovies);
+  const movieSectionDetails = useMovieListDetails();
   return (
     <div className="bg-black relative ">
-      <MovieList
-        title={lang[preferedLang].nowPlaying}
-        movies={nowPlayingMovies}
-      />
-      <MovieList title={lang[preferedLang].topRated} movies={topRatedMovies} />
-      <MovieList title={lang[preferedLang].popular} movies={popularMovies} />
+      {movieSectionDetails.map((section) => (
+        <MovieList
+        key={section.title}
+          error={section.error}
+          title={section.title}
+          movies={section.movies}
+        />
+      ))}
     </div>
   );
 };

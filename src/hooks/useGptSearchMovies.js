@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addGptMoviesTitle, clearGptMoviesArray, togglefetchGPTResult } from "../utils/userConfigSlice";
+import { addGptError, addGptMoviesTitle, clearGptMoviesArray, togglefetchGPTResult } from "../utils/userConfigSlice";
 import { GEMINI_API_KEY } from "../utils/constants";
 
 export const useGptSearchMovies = () => {
@@ -31,6 +31,7 @@ export const useGptSearchMovies = () => {
       dispatch(togglefetchGPTResult());
     } catch (error) {
         dispatch(togglefetchGPTResult());
+        dispatch(addGptError(error.message))
     }
   }
   return searchGptMovies

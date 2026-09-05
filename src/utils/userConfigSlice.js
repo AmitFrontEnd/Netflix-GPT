@@ -4,7 +4,8 @@ const initialState = {
   preferedLanguage: 'english',
   gptMoviesTitles: null,
   finalMoviesArray: null,
-  isFecthingGPTResult:false
+  isFecthingGPTResult:false,
+  gptError:null
 }
 
 export const userConfigSlice = createSlice({
@@ -23,10 +24,13 @@ export const userConfigSlice = createSlice({
     clearGptMoviesArray: state => { state.finalMoviesArray = null },
     togglefetchGPTResult:state=>{
       state.isFecthingGPTResult=!state.isFecthingGPTResult
+    },
+    addGptError:(state,action)=>{
+      state.gptError=action.payload
     }
   }
 })
 
-export const { changePreferedLanguage, addGptMoviesTitle, addGptMoviesArray, clearGptMoviesArray,togglefetchGPTResult } = userConfigSlice.actions
+export const { changePreferedLanguage, addGptMoviesTitle, addGptMoviesArray, clearGptMoviesArray,togglefetchGPTResult,addGptError } = userConfigSlice.actions
 
 export default userConfigSlice.reducer

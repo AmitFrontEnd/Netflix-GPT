@@ -17,12 +17,14 @@ const Browse = () => {
   usePopularMovies();
   useTopRatedMovies();
 
-  const isSearch = useSelector((state) => state.gpt.isSearch);
-  const trailerMovie = useSelector((state) => state.movies.trailerInfo);
+  const isSearch = useSelector((store) => store.gpt.isSearch);
+  const trailerMovie = useSelector((store) => store.movies.trailerInfo);
 
   if (!trailerMovie) return <BrowsePageLoading />;
   return !isSearch ? (
+    
     <>
+
       <MainContainer />
       <RecommendSection />
     </>
