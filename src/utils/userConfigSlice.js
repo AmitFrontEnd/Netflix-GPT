@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
   preferedLanguage: 'english',
   gptMoviesTitles: null,
-  finalMoviesArray: null
+  finalMoviesArray: null,
+  isFecthingGPTResult:false
 }
 
 export const userConfigSlice = createSlice({
@@ -19,10 +20,13 @@ export const userConfigSlice = createSlice({
     addGptMoviesArray: (state, action) => {
       state.finalMoviesArray = action.payload
     },
-    clearGptMoviesArray: state => { state.finalMoviesArray = null }
+    clearGptMoviesArray: state => { state.finalMoviesArray = null },
+    togglefetchGPTResult:state=>{
+      state.isFecthingGPTResult=!state.isFecthingGPTResult
+    }
   }
 })
 
-export const { changePreferedLanguage, addGptMoviesTitle, addGptMoviesArray, clearGptMoviesArray } = userConfigSlice.actions
+export const { changePreferedLanguage, addGptMoviesTitle, addGptMoviesArray, clearGptMoviesArray,togglefetchGPTResult } = userConfigSlice.actions
 
 export default userConfigSlice.reducer

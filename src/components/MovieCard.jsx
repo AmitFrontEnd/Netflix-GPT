@@ -1,7 +1,7 @@
 import { IMG_CDN } from "../utils/constants";
 const MovieCard = ({ movie }) => {
   const { poster_path, title, vote_average } = movie;
-
+  if (!poster_path) return;
   return (
     <div className="group w-32 sm:w-36 md:w-44 lg:w-48 shrink-0 cursor-pointer">
       {/* Poster */}

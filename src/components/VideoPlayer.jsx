@@ -1,12 +1,9 @@
 import { useSelector } from "react-redux";
-import { useTrailer } from "../hooks/useTrailer";
 
-const VideoPlayer = ({ movieId }) => {
-  useTrailer(movieId);
-
+const VideoPlayer = () => {
   const trailerMovie = useSelector((state) => state.movies?.trailerInfo);
 
-  if (!trailerMovie) return null;
+  if (!trailerMovie) return;
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">

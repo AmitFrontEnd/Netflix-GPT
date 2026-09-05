@@ -2,13 +2,17 @@ import { lang } from "../utils/languages";
 import { useLanguage } from "../hooks/useLanguage";
 import { useRef } from "react";
 import { useGptSearchMovies } from "../hooks/useGptSearchMovies";
+import { useSelector } from "react-redux";
 
 const GPTSearch = () => {
-  const searchGptMovies=useGptSearchMovies()
+  const searchGptMovies = useGptSearchMovies();
+  const isFecthingGPTResult = useSelector(
+    (state) => state.userConfig.isFecthingGPTResult,
+  );
   const inputRef = useRef(null);
 
   const handleSearch = async () => {
-    searchGptMovies(inputRef?.current.value)
+    searchGptMovies(inputRef?.current.value);
   };
 
   const preferedLanguage = useLanguage();
@@ -96,40 +100,50 @@ const GPTSearch = () => {
           />
 
           <button
+            disabled={isFecthingGPTResult}
             onClick={handleSearch}
             className="
-              flex items-center gap-2
-              bg-gradient-to-r from-red-600 to-red-700
-              hover:from-red-500 hover:to-red-600
-              text-white
-              font-semibold
-              text-sm sm:text-base
-              px-4 sm:px-6
-              py-2 sm:py-2.5
-              rounded-full
-              shadow-lg
-              transition
-              cursor-pointer
-              shrink-0
-            "
+    flex items-center justify-center gap-2
+    bg-gradient-to-r from-red-600 to-red-700
+    hover:from-red-500 hover:to-red-600
+    disabled:opacity-70
+    disabled:cursor-not-allowed
+    text-white
+    font-semibold
+    text-sm sm:text-base
+    px-4 sm:px-6
+    py-2 sm:py-2.5
+    rounded-full
+    shadow-lg
+    transition
+    shrink-0
+    min-w-[90px]
+  "
           >
-            <span className="hidden sm:inline">
-              {lang[preferedLanguage].search}
-            </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 sm:w-5 sm:h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
+            {isFecthingGPTResult ? (
+              <div className="h-5 w-5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+            ) : (
+              <>
+                <span className="hidden sm:inline">
+                  {lang[preferedLanguage].search}
+                </span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </>
+            )}
           </button>
         </div>
       </div>

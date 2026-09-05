@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { addGptMoviesTitle, clearGptMoviesArray } from "../utils/userConfigSlice";
+import { addGptMoviesTitle, clearGptMoviesArray, togglefetchGPTResult } from "../utils/userConfigSlice";
 import { GEMINI_API_KEY } from "../utils/constants";
 
 export const useGptSearchMovies = () => {
   const dispatch = useDispatch()
   const searchGptMovies = async (searchValue) => {
     dispatch(clearGptMoviesArray())
+    dispatch(togglefetchGPTResult())
     const apiKey = GEMINI_API_KEY;
     const strictPrompt =
       "You are a movie recommendation bot. Give exactly 20 movie names based on the user's query. " +
@@ -27,8 +28,9 @@ export const useGptSearchMovies = () => {
       const data = await res.json();
       const finalAnswer = data.candidates[0].content.parts[0].text;
       dispatch(addGptMoviesTitle(finalAnswer));
+      dispatch(togglefetchGPTResult());
     } catch (error) {
-      console.log(error);
+        dispatch(togglefetchGPTResult());
     }
   }
   return searchGptMovies

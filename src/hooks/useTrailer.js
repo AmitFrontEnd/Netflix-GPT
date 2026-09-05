@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 import { addTrailerInfo } from '../utils/movieSlice';
 
 export const useTrailer = (movieId) => {
-    const trailerInfo=useSelector(store=>store.movies.trailerInfo)
+  const trailerInfo = useSelector(store => store.movies.trailerInfo)
   const dispatch = useDispatch();
   useEffect(() => {
-    if(trailerInfo) return
+    if (!movieId) return
+    if (trailerInfo) return
     fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
       API_OPTIONS,
@@ -20,5 +21,5 @@ export const useTrailer = (movieId) => {
         dispatch(addTrailerInfo(filteredTypes[0]));
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [movieId]);
 }

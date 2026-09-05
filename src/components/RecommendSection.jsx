@@ -8,8 +8,6 @@ const RecommendSection = () => {
   const preferedLang = useSelector(
     (store) => store.userConfig.preferedLanguage,
   );
-  useTopRatedMovies();
-  usePopularMovies();
   const nowPlayingMovies = useSelector(
     (state) => state.movies.nowPlayingMovies,
   );
