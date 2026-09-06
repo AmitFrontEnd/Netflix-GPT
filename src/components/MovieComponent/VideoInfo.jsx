@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { lang } from "../utils/languages";
+import { lang } from "../../utils/languages";
 
 const VideoInfo = ({ title, overview }) => {
    const preferedLang = useSelector(

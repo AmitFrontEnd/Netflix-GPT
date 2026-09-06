@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearSelectedMovie } from "../utils/movieSlice";
+import { clearSelectedMovie } from "../../utils/movieSlice";
 
 const MovieModal = () => {
   const movie = useSelector((store) => store.movies.selectedMovie);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   if (!movie) return null;
 
   const {
@@ -26,14 +26,14 @@ const MovieModal = () => {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
-      onClick={()=>dispatch(clearSelectedMovie())}
+      onClick={() => dispatch(clearSelectedMovie())}
     >
       <div
         className="relative w-full max-w-2xl overflow-hidden rounded-xl bg-neutral-900 border border-white/10 shadow-2xl shadow-black/60 max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={()=>dispatch(clearSelectedMovie())}
+          onClick={() => dispatch(clearSelectedMovie())}
           className="absolute top-4 right-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white/80 hover:bg-black/80 hover:text-white transition-all duration-200 border border-white/10"
         >
           ✕

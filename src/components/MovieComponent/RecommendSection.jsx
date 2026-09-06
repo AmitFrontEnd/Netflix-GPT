@@ -1,5 +1,5 @@
 import MovieList from "./MovieList";
-import useMovieListDetails from "../hooks/useMovieListDetails";
+import useMovieListDetails from "../../hooks/useMovieListDetails";
 
 const RecommendSection = () => {
   const movieSectionDetails = useMovieListDetails();

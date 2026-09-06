@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import MainContainer from "../components/MainContainer";
-import RecommendSection from "../components/RecommendSection";
-import GPTSearchPage from "../components/GPTSearchPage";
+import RecommendSection from "../components/MovieComponent/RecommendSection";
+import GPTSearchPage from "../components/GPTComponets/GPTSearchPage";
 import BrowsePageLoading from "../components/BrowsePageLoading";
 import { useTrailer } from "../hooks/useTrailer";
 import { usePopularMovies } from "../hooks/usePopularMovies";
@@ -22,9 +22,7 @@ const Browse = () => {
 
   if (!trailerMovie) return <BrowsePageLoading />;
   return !isSearch ? (
-    
     <>
-
       <MainContainer />
       <RecommendSection />
     </>

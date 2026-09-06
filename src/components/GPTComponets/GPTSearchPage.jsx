@@ -1,8 +1,8 @@
 import GPTSearch from "./GPTSearch";
 import { useSelector } from "react-redux";
-import GPTRateError from "../components/GPTRateError"
-import MovieList from "./MovieList";
-import { useGetMoviesResults } from "../hooks/useGetMoviesResults";
+import GPTRateError from "./GPTRateError";
+import MovieList from "../MovieComponent/MovieList";
+import { useGetMoviesResults } from "../../hooks/useGetMoviesResults";
 import GPTSearchLoading from "./GPTSearchLoading";
 const GPTSearchPage = () => {
   useGetMoviesResults();
@@ -15,11 +15,9 @@ const GPTSearchPage = () => {
   const isFecthingGPTResult = useSelector(
     (store) => store.userConfig.isFecthingGPTResult,
   );
-  const gptError = useSelector(
-    (store) => store.userConfig.gptError,
-  );
+  const gptError = useSelector((store) => store.userConfig.gptError);
 
-  if(gptError) return <GPTRateError/>
+  if (gptError) return <GPTRateError />;
 
   return (
     <>

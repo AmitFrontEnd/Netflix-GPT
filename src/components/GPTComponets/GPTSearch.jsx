@@ -1,7 +1,7 @@
-import { lang } from "../utils/languages";
-import { useLanguage } from "../hooks/useLanguage";
+import { lang } from "../../utils/languages";
+import { useLanguage } from "../../hooks/useLanguage";
 import { useRef } from "react";
-import { useGptSearchMovies } from "../hooks/useGptSearchMovies";
+import { useGptSearchMovies } from "../../hooks/useGptSearchMovies";
 import { useSelector } from "react-redux";
 
 const GPTSearch = () => {

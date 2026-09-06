@@ -5,12 +5,12 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./utils/userSlice";
 import { auth } from "../src/utils/firebase";
 import { useEffect } from "react";
-import MovieModal from "./components/MovieModal";
+import MovieModal from "./components/MovieComponent/MovieModal";
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
-    const unsubscribe=onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
@@ -21,14 +21,14 @@ const App = () => {
       }
     });
 
-    return ()=>unsubscribe()
+    return () => unsubscribe();
   }, []);
 
   return (
     <>
       <Header />
       <Outlet />
-      <MovieModal/>
+      <MovieModal />
     </>
   );
 };

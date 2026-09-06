@@ -1,8 +1,8 @@
-import { useLanguage } from "../hooks/useLanguage";
+import { useLanguage } from "../../hooks/useLanguage";
 import MovieCard from "./MovieCard";
-import { lang } from "../utils/languages";
-const MovieList = ({error, title, movies }) => {
-  if(error) return
+import { lang } from "../../utils/languages";
+const MovieList = ({ error, title, movies }) => {
+  if (error) return;
   const preferedLanguage = useLanguage();
   return (
     <section className="px-4 sm:px-6 md:px-10 lg:px-14 py-6 md:py-8">

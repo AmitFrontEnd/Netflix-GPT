@@ -1,13 +1,16 @@
 import { useDispatch } from "react-redux";
-import { IMG_CDN } from "../utils/constants";
-import {addSelectedMovie} from "../utils/movieSlice"
+import { IMG_CDN } from "../../utils/constants";
+import { addSelectedMovie } from "../../utils/movieSlice";
 const MovieCard = ({ movie }) => {
-  const dispatch=useDispatch()
-  
+  const dispatch = useDispatch();
+
   const { poster_path, title, vote_average } = movie;
   if (!poster_path) return;
   return (
-    <div className="group w-32 sm:w-36 md:w-44 lg:w-48 shrink-0 cursor-pointer" onClick={()=>dispatch(addSelectedMovie(movie))}>
+    <div
+      className="group w-32 sm:w-36 md:w-44 lg:w-48 shrink-0 cursor-pointer"
+      onClick={() => dispatch(addSelectedMovie(movie))}
+    >
       {/* Poster */}
       <div
         className="
