@@ -12,23 +12,69 @@ const Header = () => {
   const preferedLanguage = useLanguage();
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        console.log("Sign out Successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => {})
+      .catch((error) => {});
   };
 
   return (
-    <header className="absolute top-0 left-0 w-full p-4 md:p-8 z-50 flex justify-between items-center bg-gradient-to-b from-black/60 to-transparent">
-      <div>
-        <img src="./logo.svg" alt="Netflix Logo" className="w-30" />
+    <header className="absolute top-0 left-0 w-full p-3 sm:p-4 md:p-8 z-50 flex flex-col sm:flex-row justify-between items-center sm:items-center gap-2 bg-gradient-to-b from-black/70 via-black/40 to-transparent">
+      <div className="flex w-full sm:w-auto items-center justify-between sm:justify-start flex-shrink-0">
+        <img
+          src="./logo.svg"
+          alt="Netflix Logo"
+          className="w-20 sm:w-24 md:w-30"
+        />
+
+        {/* Search + SignOut on mobile top row, hidden on sm+ since they move to the group below */}
+        {user && (
+          <div className="flex sm:hidden items-center gap-1.5">
+            <button
+              onClick={() => {
+                dispatch(toggleButton());
+              }}
+              className="
+                flex items-center justify-center gap-1.5
+                bg-gradient-to-r from-red-600 to-red-700
+                hover:from-red-500 hover:to-red-600
+                text-white
+                text-xs
+                font-semibold
+                px-2.5 py-1.5
+                rounded-sm
+                shadow-md
+                transition
+                cursor-pointer
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-3.5 h-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.6-10.6 7.5 7.5 0 0010.6 10.6z"
+                />
+              </svg>
+            </button>
+
+            <button
+              className="bg-red-600 text-white text-xs px-2.5 py-1.5 rounded-sm cursor-pointer hover:bg-red-700 transition whitespace-nowrap"
+              onClick={handleSignOut}
+            >
+              {lang[preferedLanguage].SignOutButton}
+            </button>
+          </div>
+        )}
       </div>
 
       {user && (
-        <div className="flex items-center gap-2 md:gap-4">
-          {/* Language Select */}
+        <div className="flex w-full sm:w-auto justify-end sm:justify-start items-center gap-1.5 xs:gap-2 md:gap-4 flex-shrink-0">
+          {/* Language Select - always visible, moves to second row on mobile via parent flex-col */}
           <select
             onChange={(e) => {
               dispatch(changePreferedLanguage(e.target.value));
@@ -67,13 +113,13 @@ const Header = () => {
             })}
           </select>
 
-          {/* GPT Search Button */}
+          {/* Search + SignOut on sm+ (hidden on mobile top row above) */}
           <button
             onClick={() => {
               dispatch(toggleButton());
             }}
             className="
-              flex items-center gap-1.5
+              hidden sm:flex items-center gap-1.5
               bg-gradient-to-r from-red-600 to-red-700
               hover:from-red-500 hover:to-red-600
               text-white
@@ -106,9 +152,8 @@ const Header = () => {
             </span>
           </button>
 
-          {/* Sign Out */}
           <button
-            className="bg-red-600 text-white p-2 rounded-sm cursor-pointer hover:bg-red-700 transition"
+            className="hidden sm:block bg-red-600 text-white p-2 rounded-sm cursor-pointer hover:bg-red-700 transition"
             onClick={handleSignOut}
           >
             {lang[preferedLanguage].SignOutButton}

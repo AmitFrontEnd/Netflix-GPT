@@ -77,57 +77,119 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <div className='bg-[url("https://assets.nflxext.com/ffe/siteui/vlv3/a00fdfd7-4916-4f12-b5ff-c05b9d7b4d07/web/IN-en-20260824-TRIFECTA-perspective_26443db2-0249-420d-bb73-77cfeea330e5_small.jpg")] absolute top-0 left-0 z-[-1] w-full h-screen'></div>
+    <div className="relative min-h-screen w-full overflow-hidden bg-black">
+      <div className='absolute inset-0 bg-[url("https://assets.nflxext.com/ffe/siteui/vlv3/a00fdfd7-4916-4f12-b5ff-c05b9d7b4d07/web/IN-en-20260824-TRIFECTA-perspective_26443db2-0249-420d-bb73-77cfeea330e5_small.jpg")] bg-cover bg-center' />
 
-      <div className="absolute top-0 left-0 bg-black opacity-70 h-screen w-full"></div>
+      <div className="absolute inset-0 bg-black/65" />
 
       <form
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/80 min-h-100 w-[90%] max-w-90 text-white rounded-sm p-8"
+        className="
+        absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+        w-[90%] max-w-[420px]
+        rounded-md
+        bg-black/85
+        px-7 py-9
+        text-white
+        shadow-2xl
+        sm:px-10 sm:py-10
+      "
         onSubmit={(e) => e.preventDefault()}
       >
-        <h2 className="font-bold text-xl mb-6">
+        <h2 className="mb-7 text-3xl font-semibold">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h2>
+
         {!isSignIn && (
           <input
             ref={name}
             type="text"
             placeholder="Full Name"
-            className="w-full rounded-sm bg-gray-800 p-2 mb-6 border-0 outline-0"
+            className="
+            mb-4 w-full rounded-md
+            bg-[#333]
+            px-4 py-3
+            text-sm text-white
+            placeholder:text-gray-400
+            outline-none
+            transition
+            focus:bg-[#3d3d3d]
+            focus:ring-1 focus:ring-gray-500
+          "
           />
         )}
+
         <input
           ref={email}
           type="email"
-          placeholder="Enter your Email"
-          className="w-full rounded-sm bg-gray-800 p-2 mb-6 border-0 outline-0"
+          placeholder="Email"
+          className="
+          mb-4 w-full rounded-md
+          bg-[#333]
+          px-4 py-3
+          text-sm text-white
+          placeholder:text-gray-400
+          outline-none
+          transition
+          focus:bg-[#3d3d3d]
+          focus:ring-1 focus:ring-gray-500
+        "
         />
+
         <input
           ref={password}
-          type="text"
+          type="password"
           placeholder="Password"
-          className="w-full rounded-sm bg-gray-800 p-2 mb-6 border-0 outline-0"
+          className="
+          mb-2 w-full rounded-md
+          bg-[#333]
+          px-4 py-3
+          text-sm text-white
+          placeholder:text-gray-400
+          outline-none
+          transition
+          focus:bg-[#3d3d3d]
+          focus:ring-1 focus:ring-gray-500
+        "
         />
+
+        {!isSignIn && (
+          <p className="mb-5 text-xs text-gray-500">
+            Password must contain at least 8 characters and 1 capital letter.
+          </p>
+        )}
+
         <button
-          className="bg-red-600 w-full rounded-sm cursor-pointer p-2 mb-6"
+          className="
+          mb-5 w-full rounded-md
+          bg-red-600
+          px-4 py-3
+          text-sm font-semibold
+          text-white
+          transition
+          hover:bg-red-700
+          active:scale-[0.99]
+          cursor-pointer
+        "
           onClick={handleSubmit}
         >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
-        <p className="text-red-500 font-bold text-center mb-4">
+
+        <p className="mb-5 min-h-5 text-center text-sm font-medium text-red-500">
           {error && error}
         </p>
-        <p
-          className="cursor-pointer"
-          onClick={() => {
-            setIsSignIn(!isSignIn);
-            setError(null);
-          }}
-        >
-          {isSignIn
-            ? "New to Netflix? Click here for Sign Up"
-            : "Already have an account Click here for Sign In"}
+
+        <p className="text-sm text-gray-400">
+          {isSignIn ? "New to Netflix?" : "Already have an account?"}
+          <span
+            className="ml-1 cursor-pointer text-white hover:underline"
+            onClick={() => {
+              setIsSignIn(!isSignIn);
+              setError(null);
+            }}
+          >
+            {isSignIn ? "Sign up now." : "Sign in now."}
+          </span>
         </p>
       </form>
     </div>
