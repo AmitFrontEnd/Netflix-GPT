@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "./utils/userSlice";
 import { auth } from "../src/utils/firebase";
 import { useEffect } from "react";
+import MovieModal from "./components/MovieModal";
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const App = () => {
     <>
       <Header />
       <Outlet />
+      <MovieModal/>
     </>
   );
 };

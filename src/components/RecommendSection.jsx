@@ -7,7 +7,7 @@ const RecommendSection = () => {
     <div className="bg-black relative ">
       {movieSectionDetails.map((section) => (
         <MovieList
-        key={section.title}
+          key={section.title}
           error={section.error}
           title={section.title}
           movies={section.movies}
