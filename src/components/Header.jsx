@@ -7,6 +7,8 @@ import { AVAILABLE_LANGUAGES } from "../utils/constants";
 import { lang } from "../utils/languages";
 import { useLanguage } from "../hooks/useLanguage";
 const Header = () => {
+  const isSearch = useSelector((store) => store.gpt.isSearch);
+
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const preferedLanguage = useLanguage();
@@ -22,7 +24,10 @@ const Header = () => {
         <img
           src="./logo.svg"
           alt="Netflix Logo"
-          className="w-20 sm:w-24 md:w-30"
+          className="w-20 sm:w-24 md:w-30 cursor-pointer"
+          onClick={() => {
+            user && isSearch && dispatch(toggleButton());
+          }}
         />
 
         {user && (
