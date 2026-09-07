@@ -40,12 +40,9 @@ const Login = () => {
               const { uid, email, displayName } = auth.currentUser;
               dispatch(addUser({ uid, email, displayName }));
             })
-            .catch((error) => {
-              console.log(error);
-            });
+            .catch((error) => {});
         })
         .catch((error) => {
-          console.log(error);
           if (error.message.includes("auth/email-already-in-use")) {
             setError("Email is already registered please sign in...");
             name.current.value = "";
@@ -64,10 +61,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
-          console.log(error.message);
           if (error.message.includes("auth/invalid-credential")) {
             setError("Email or password is invalid");
           } else {

@@ -6,7 +6,7 @@ const MovieList = ({ error, title, movies }) => {
   const preferedLanguage = useLanguage();
   return (
     <section className="px-4 sm:px-6 md:px-10 lg:px-14 py-6 md:py-8">
-      {/* Heading */}
+      
       <div className="flex items-center justify-between mb-4 md:mb-6">
         <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
           {title}
@@ -17,7 +17,7 @@ const MovieList = ({ error, title, movies }) => {
         </button>
       </div>
 
-      {/* Movie Row */}
+      
       <div
         className="
           flex

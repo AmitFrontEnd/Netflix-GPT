@@ -4,10 +4,8 @@ const BrowsePageLoading = () => {
   return (
     <div className="flex h-screen w-full items-center justify-center bg-black">
       <div className="relative flex items-center justify-center">
-        {/* Outer glow */}
         <div className="absolute h-16 w-16 rounded-full bg-red-600/20 blur-xl" />
 
-        {/* Spinner */}
         <div
           className="
             h-14 w-14
@@ -20,10 +18,7 @@ const BrowsePageLoading = () => {
           "
         />
 
-        {/* Center Netflix-style N */}
-        <span className="absolute text-xl font-extrabold text-red-600">
-          N
-        </span>
+        <span className="absolute text-xl font-extrabold text-red-600">N</span>
       </div>
     </div>
   );

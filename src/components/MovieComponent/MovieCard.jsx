@@ -11,7 +11,6 @@ const MovieCard = ({ movie }) => {
       className="group w-32 sm:w-36 md:w-44 lg:w-48 shrink-0 cursor-pointer"
       onClick={() => dispatch(addSelectedMovie(movie))}
     >
-      {/* Poster */}
       <div
         className="
           relative
@@ -41,7 +40,6 @@ const MovieCard = ({ movie }) => {
           "
         />
 
-        {/* Dark overlay */}
         <div
           className="
             absolute
@@ -57,7 +55,6 @@ const MovieCard = ({ movie }) => {
           "
         />
 
-        {/* Rating */}
         <div
           className="
             absolute
@@ -77,7 +74,6 @@ const MovieCard = ({ movie }) => {
           ⭐ {vote_average?.toFixed(1)}
         </div>
 
-        {/* Play button */}
         <div
           className="
             absolute
@@ -111,7 +107,6 @@ const MovieCard = ({ movie }) => {
         </div>
       </div>
 
-      {/* Title */}
       <h3
         className="
           mt-2

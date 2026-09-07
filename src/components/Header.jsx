@@ -25,7 +25,6 @@ const Header = () => {
           className="w-20 sm:w-24 md:w-30"
         />
 
-        {/* Search + SignOut on mobile top row, hidden on sm+ since they move to the group below */}
         {user && (
           <div className="flex sm:hidden items-center gap-1.5">
             <button
@@ -74,7 +73,6 @@ const Header = () => {
 
       {user && (
         <div className="flex w-full sm:w-auto justify-end sm:justify-start items-center gap-1.5 xs:gap-2 md:gap-4 flex-shrink-0">
-          {/* Language Select - always visible, moves to second row on mobile via parent flex-col */}
           <select
             onChange={(e) => {
               dispatch(changePreferedLanguage(e.target.value));
@@ -113,7 +111,6 @@ const Header = () => {
             })}
           </select>
 
-          {/* Search + SignOut on sm+ (hidden on mobile top row above) */}
           <button
             onClick={() => {
               dispatch(toggleButton());

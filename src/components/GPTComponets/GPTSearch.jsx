@@ -31,13 +31,11 @@ const GPTSearch = () => {
         px-4
       "
     >
-      {/* Background glow */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-red-800/10 rounded-full blur-[150px]" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 w-full max-w-2xl text-center">
         <h1
           className="
